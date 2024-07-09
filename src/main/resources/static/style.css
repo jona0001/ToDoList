@@ -1,0 +1,16 @@
+
+body {
+    background-color: #f0f4f8;
+}
+.container {
+    margin-top: 2rem;
+}
+.back-link {
+    display: block;
+    margin-top: 1rem;
+    color: #007bff;
+    text-decoration: none;
+}
+.back-link:hover {
+    text-decoration: underline;
+}

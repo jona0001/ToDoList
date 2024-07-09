@@ -16,22 +16,22 @@ public class TaskModel {
     private String name;
     @Column(name = "description")
     private String description;
-    @Column(name = "creatingDate")
+    @Column(name = "creating_date")
     private LocalDateTime creatingDate;
     @Column(name = "deadline")
-    private double deadline;
-    @Column(name = "isComplete")
+    private String deadline;
+    @Column(name = "is_complete")
     private boolean isComplete;
+    @Enumerated(EnumType.STRING)
     @Column(name = "priority")
     private TaskPrio priority;
 
     public TaskModel(String name, String description,
-                     double deadline, boolean isComplete, TaskPrio priority) {
+                     String deadline, TaskPrio priority) {
         this.name = name;
         this.description = description;
         this.creatingDate = LocalDateTime.now();
         this.deadline = deadline;
-        this.isComplete = isComplete;
         this.priority = priority;
     }
 
@@ -70,11 +70,11 @@ public class TaskModel {
         this.creatingDate = creatingDate;
     }
 
-    public double getDeadline() {
+    public String getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(double deadline) {
+    public void setDeadline(String deadline) {
         this.deadline = deadline;
     }
 

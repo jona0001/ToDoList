@@ -8,7 +8,7 @@ CREATE TABLE task (
                       name VARCHAR(50) NOT NULL,
                       description VARCHAR(250),
                       creatingDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                      deadline DOUBLE,
+                      deadline VARCHAR(50),
                       isComplete BOOLEAN,
                       priority ENUM('Low', 'Medium', 'High') NOT NULL
 );
