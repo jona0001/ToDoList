@@ -27,6 +27,7 @@ public class TaskWebController {
     public String viewTasks(Model model) {
         List<TaskModel> tasks = taskRepo.findAll();
         model.addAttribute("tasks", tasks);
+
         return "allTasks";
     }
     @DeleteMapping("/deleteTask")
@@ -44,7 +45,7 @@ public class TaskWebController {
 
     @PostMapping("/taskCompleted")
     public String taskCompleted (@RequestParam long id){
-        TaskModel taskmodel = new TaskModel();
+        TaskModel taskmodel;
         taskmodel = taskRepo.getReferenceById(id);
         if (taskmodel.isComplete()) {
             taskmodel.setComplete(false);

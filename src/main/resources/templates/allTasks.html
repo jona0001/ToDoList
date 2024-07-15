@@ -88,8 +88,7 @@
                         <tbody>
                         <tr th:each="task : ${tasks}">
                             <td>
-                                <form th:action="@{/taskCompleted}" method="post" class="d-inline">
-                                    <input type="hidden" name="id" th:value="${task.id}" />
+                                <form th:action="@{/taskCompleted(id=${task.id})}" method="post" class="d-inline">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" th:checked="${task.complete}" th:onchange="this.form.submit()">
                                     </div>
