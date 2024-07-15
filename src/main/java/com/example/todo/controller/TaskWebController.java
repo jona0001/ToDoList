@@ -20,7 +20,7 @@ public class TaskWebController {
                           @RequestParam String deadline, @RequestParam TaskPrio priority, Model model){
         TaskModel task = new TaskModel(name, description, deadline, priority);
         taskRepo.save(task);
-        return "redirect:/alltasks";
+        return "redirect:/tasks";
     }
 
     @GetMapping("/tasks")
@@ -31,14 +31,20 @@ public class TaskWebController {
     }
 
     @DeleteMapping("/deleteTask")
-    public List<TaskWebController> deleteTask(){
-        return null;
+    public String deleteTask(@RequestParam long id) {
+        if (taskRepo.existsById(id)) {
+            taskRepo.deleteById(id);
+        }
+        return "redirect:/tasks";
     }
+
 
     @GetMapping("/viewTask")
     public List<TaskWebController> viewTask(){
         return null;
     }
+
+
 
     //TODO add an edit task.
 
