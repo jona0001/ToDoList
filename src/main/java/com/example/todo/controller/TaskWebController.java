@@ -22,14 +22,12 @@ public class TaskWebController {
         taskRepo.save(task);
         return "redirect:/tasks";
     }
-
     @GetMapping("/tasks")
     public String viewTasks(Model model) {
         List<TaskModel> tasks = taskRepo.findAll();
         model.addAttribute("tasks", tasks);
         return "allTasks";
     }
-
     @DeleteMapping("/deleteTask")
     public String deleteTask(@RequestParam long id) {
         if (taskRepo.existsById(id)) {
@@ -38,12 +36,19 @@ public class TaskWebController {
         return "redirect:/tasks";
     }
 
-
     @GetMapping("/viewTask")
     public List<TaskWebController> viewTask(){
         return null;
     }
 
+    @PostMapping("/taskCompleted")
+    public String taskCompleted (@RequestParam long id){
+        TaskModel taskModel = new TaskModel();
+        if (taskRepo.existsById(id)) {
+            taskModel.setComplete(false);
+        }
+        return "redirect:/tasks";
+    }
 
 
     //TODO add an edit task.
