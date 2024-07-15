@@ -4,6 +4,7 @@ import com.example.todo.model.TaskModel;
 import com.example.todo.repo.TaskRepo;
 import com.example.todo.util.TaskPrio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -43,9 +44,15 @@ public class TaskWebController {
 
     @PostMapping("/taskCompleted")
     public String taskCompleted (@RequestParam long id){
-        TaskModel taskModel = new TaskModel();
-        if (taskRepo.existsById(id)) {
-            taskModel.setComplete(false);
+        TaskModel taskmodel = new TaskModel();
+        taskmodel = taskRepo.getReferenceById(id);
+        if (taskmodel.isComplete()) {
+            taskmodel.setComplete(false);
+            taskRepo.save(taskmodel);
+        } else if (!taskmodel.isComplete()) {
+            taskmodel.setComplete(true);
+            taskRepo.save(taskmodel);{
+            }
         }
         return "redirect:/tasks";
     }

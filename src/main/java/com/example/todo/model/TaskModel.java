@@ -21,7 +21,7 @@ public class TaskModel {
     @Column(name = "deadline")
     private String deadline;
     @Column(name = "is_complete")
-    private boolean isComplete;
+    private boolean isComplete = false;
     @Enumerated(EnumType.STRING)
     @Column(name = "priority")
     private TaskPrio priority;
